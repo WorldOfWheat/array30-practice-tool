@@ -43,17 +43,41 @@ function handleTabSplitTable(lines: string[]): Map<string, string[]> {
   return table;
 }
 
-export async function getFirstLevelTable(): Promise<Map<string, string[]>> {
+function reverseMap(originalMap: Map<string, string[]>): Map<string, string[]> {
+  const reversedMap = new Map<string, string[]>();
+
+  for (const [key, values] of originalMap.entries()) {
+    for (const value of values) {
+      if (reversedMap.has(value)) {
+        reversedMap.get(value)?.push(key);
+      } else {
+        reversedMap.set(value, [key]);
+      }
+    }
+  }
+
+  return reversedMap;
+}
+
+export async function getFirstLevelTable(reverse: boolean = false): Promise<Map<string, string[]>> {
   const file = await fetch("/1.txt");
   const text = await file.text();
   const lines = text.split("\n");
+  const handleTabSplitTableResult = handleTabSplitTable(lines);
+  if (reverse) {
+    return reverseMap(handleTabSplitTableResult);
+  }
+
   return handleTabSplitTable(lines);
 }
 
-export async function getSecondLevelTable(): Promise<Map<string, string[]>> {
+export async function getSecondLevelTable(reverse: boolean = false): Promise<Map<string, string[]>> {
   const file = await fetch("/2.txt");
   const text = await file.text();
   const lines = text.split("\n");
+  if (reverse) {
+    return reverseMap(handleTabSplitTable(lines));
+  }
   return handleTabSplitTable(lines);
 }
 
