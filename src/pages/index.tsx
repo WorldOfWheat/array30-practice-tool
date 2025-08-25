@@ -54,6 +54,10 @@ function ImportArticleCard({ setArticle }: { setArticle: (article: string) => vo
 
   async function handleChangeSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const value = event.target.value;
+    if (value === '') {
+      setTextareaValue('');
+      return;
+    }
     const fileName = value + '.txt';
     const article = await fetch('/' + fileName);
     const text = await article.text();
@@ -68,7 +72,7 @@ function ImportArticleCard({ setArticle }: { setArticle: (article: string) => vo
         </div>
         <div className={`card-body d-flex gap-3 flex-column`}>
           <select className="form-select" onChange={handleChangeSelect}>
-            <option selected>自選文章</option>
+            <option value='' selected>自選文章</option>
             <option value="example1">文章範例 1</option>
             <option value="example2">文章範例 2</option>
             <option value="example3">文章範例 3</option>
