@@ -1,0 +1,14 @@
+:root {
+  --primary-color: #e78a2c;
+  --secondary-color: #767676;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
