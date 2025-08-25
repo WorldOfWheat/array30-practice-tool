@@ -1,0 +1,20 @@
+.footer {
+  margin-top: auto;
+  background-color: #272727;
+  display: flex;
+  color: white;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0.3rem;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
