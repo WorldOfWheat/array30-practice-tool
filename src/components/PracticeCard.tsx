@@ -70,6 +70,8 @@ export function PracticeCard(
   const [startTime, setStartTime] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [finished, setFinished] = useState<boolean>(false);
+  const [wordPerMinute, setWordPerMinute] = useState<number>(0);
+  const [totalWrongCount, setTotalWrongCount] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 載入表格
@@ -96,6 +98,15 @@ export function PracticeCard(
       if (timer) clearInterval(timer);
     };
   }, [startTime, finished]);
+
+  useEffect(() => {
+    if (startTime) {
+      setWordPerMinute(Math.round(cursorPosition / (((currentTime - startTime) / 1000) / 60)));
+    }
+    else {
+      setWordPerMinute(0);
+    }
+  }, [currentTime]);
 
   function getExpectedValues(char: string): Array<string> {
     const firstLevelValue = firstLevelTable.get(char);
@@ -135,7 +146,7 @@ export function PracticeCard(
     setReadOnly(true);
     setFinished(true);
     const timer = setTimeout(() => {
-      setCursorPosition(0);
+      setTotalWrongCount(0);
       setFinished(false);
       setInputPlaceholder('');
       setReadOnly(false);
@@ -143,11 +154,13 @@ export function PracticeCard(
       setInputValue('');
       setStartTime(null);
       setCurrentTime(0);
+      setWordPerMinute(0);
     }, 3000);
     return () => clearTimeout(timer);
   }
 
   function handleWrong() {
+    setTotalWrongCount((prev) => prev + 1);
     setWrongCount((prev) => prev + 1);
     setInputValue('');
     if (wrongCount >= 2) {
@@ -196,10 +209,15 @@ export function PracticeCard(
 
   return (
     <>
+      {/* 統計資料 */}
       <div>
         <div>
           <i className="bi bi-calculator"></i>
           <span className="ms-2">共 {articleArray.length} 字</span>
+        </div>
+        <div>
+          <i className="bi bi-x-circle"></i>
+          <span className="ms-2">錯誤 {totalWrongCount} 次</span>
         </div>
         <div>
           <i className="bi bi-stopwatch"></i>
@@ -207,6 +225,18 @@ export function PracticeCard(
             <>
               <span className="ms-2">
                 {Math.floor((currentTime - startTime) / 1000)} 秒
+              </span>
+            </>
+          ) : (
+            <span className="ms-2">尚未開始</span>
+          )}
+        </div>
+        <div>
+          <i className="bi bi-speedometer2"></i>
+          {startTime !== null && currentTime !== startTime ? (
+            <>
+              <span className="ms-2">
+                {wordPerMinute} 字/分
               </span>
             </>
           ) : (
