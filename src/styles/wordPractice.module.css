@@ -9,9 +9,17 @@
   color: white;
 }
 
+:global(body.dark-mode) .introduce {
+  background-color: var(--dark-secondary-color);
+}
+
 .mode-select {
   padding: 1rem;
   background-color: var(--background-color);
+}
+
+:global(body.dark-mode) .mode-select {
+  background-color: var(--dark-background-color);
 }
 
 .mode-select-section {

@@ -9,9 +9,17 @@
   color: white;
 }
 
+:global(body.dark-mode) .introduce {
+  background-color: var(--dark-secondary-color);
+}
+
 .import-article {
   padding: 1rem;
   background-color: var(--background-color);
+}
+
+:global(body.dark-mode) .import-article {
+  background-color: var(--dark-background-color);
 }
 
 .import-article-button {
@@ -28,37 +36,22 @@
   padding: 1rem;
 }
 
-.practice-article-word {
-  display: inline-block;
-  padding: 0.5rem;
-  margin: 0.2rem;
-  border-radius: 0.25rem;
-  background-color: #f0f0f0;
-  font-size: 1.5rem;
-}
-
-.practice-article-word.selected {
-  background-color: #003cff;
-  color: white;
-}
-
-.practice-input-area {
-  text-align: center;
-}
-
-.practice-article-show-area {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-top: 1rem;
-  height: 300px;
-  overflow-y: auto;
-  background-color: #fafafa;
+:global(body.dark-mode) .import-article-select {
+  background-color: var(--dark-secondary-color);
+  color: var(--dark-text-color);
+  border: none;
 }
 
 .import-article-textarea {
   resize: none;
 }
 
-.stopwatch {
-  align-self: flex-start;
+:global(body.dark-mode) .import-article-textarea {
+  background-color: var(--dark-secondary-color);
+  color: var(--dark-text-color);
+  border: none;
+} 
+
+:global(body.dark-mode) .import-article-textarea::placeholder {
+  color: var(--dark-text-color);
 }
