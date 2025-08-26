@@ -72,7 +72,7 @@ function ImportArticle({ setArticle }: { setArticle: (article: string) => void }
       <div className={`${styles['import-article']}`}>
         <h2>匯入文章</h2>
         <div className={`d-flex gap-3 flex-column`}>
-          <select className="form-select" onChange={handleChangeSelect}>
+          <select className={`form-select ${styles['import-article-select']}`} onChange={handleChangeSelect}>
             <option value='' selected>自選文章</option>
             <option value="example1">文章範例 1</option>
             <option value="example2">文章範例 2</option>

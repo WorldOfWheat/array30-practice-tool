@@ -99,6 +99,7 @@ export function PracticeCard(
     };
   }, [startTime, finished]);
 
+  // 計算每分鐘字數
   useEffect(() => {
     if (startTime) {
       setWordPerMinute(Math.round(cursorPosition / (((currentTime - startTime) / 1000) / 60)));
@@ -108,6 +109,11 @@ export function PracticeCard(
     }
   }, [currentTime]);
 
+  useEffect(() => {
+    resetAll();
+  }, [article]);
+
+  // 取得預期輸入值
   function getExpectedValues(char: string): Array<string> {
     const firstLevelValue = firstLevelTable.get(char);
     const secondLevelValue = secondLevelTable.get(char);
@@ -140,25 +146,31 @@ export function PracticeCard(
     return anyValue;
   }
 
+  function resetAll() {
+    setTotalWrongCount(0);
+    setFinished(false);
+    setInputPlaceholder('');
+    setReadOnly(false);
+    setCursorPosition(0);
+    setInputValue('');
+    setStartTime(null);
+    setCurrentTime(0);
+    setWordPerMinute(0);
+  }
+
+  // 處理完成
   function handleFinish() {
     setCursorPosition(-1);
     setInputPlaceholder('恭喜完成！');
     setReadOnly(true);
     setFinished(true);
     const timer = setTimeout(() => {
-      setTotalWrongCount(0);
-      setFinished(false);
-      setInputPlaceholder('');
-      setReadOnly(false);
-      setCursorPosition(0);
-      setInputValue('');
-      setStartTime(null);
-      setCurrentTime(0);
-      setWordPerMinute(0);
+      resetAll();
     }, 3000);
     return () => clearTimeout(timer);
   }
 
+  // 處理錯誤
   function handleWrong() {
     setTotalWrongCount((prev) => prev + 1);
     setWrongCount((prev) => prev + 1);
