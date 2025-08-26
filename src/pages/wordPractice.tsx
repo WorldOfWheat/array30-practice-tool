@@ -65,12 +65,14 @@ function ModeSelectionButtonGroup({
   setSelectedCharacters: (chars: string[]) => void;
 }
 ) {
+  const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;/.,';
+
   return (
     <div className="d-flex flex-wrap gap-1">
-      {Array.from({ length: 26 }, (_, i) => (
+      {keys.split('').map((key, i) => (
         <ModeSelectionButton
           key={i}
-          character={String.fromCharCode(65 + i)}
+          character={key}
           selectedCharacters={selectedCharacters}
           setSelectedCharacters={setSelectedCharacters} />
       ))}
