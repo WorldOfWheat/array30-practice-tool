@@ -24,8 +24,23 @@
   color: white;
 }
 
+:global(body.dark-mode) .practice-article-word {
+  background-color: #2b2b2b;
+  color: #f5f5f5;
+}
+
+:global(body.dark-mode) .practice-article-word.selected {
+  background-color: #0056ff;
+}
+
 .practice-input-area {
   text-align: center;
+}
+
+:global(body.dark-mode) .practice-input-area {
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
+  border: 1px solid var(--dark-text-color);
 }
 
 .practice-article-show-area {
@@ -37,6 +52,12 @@
   overflow-y: auto;
   position: relative;
   background-color: #fafafa;
+}
+
+:global(body.dark-mode) .practice-article-show-area {
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
+  border: 1px solid #555;
 }
 
 .import-article-textarea {

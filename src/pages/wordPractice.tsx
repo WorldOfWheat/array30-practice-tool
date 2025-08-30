@@ -57,6 +57,7 @@ function ModeSelectionButton({
   )
 }
 
+
 function ModeSelectionButtonGroup({
   selectedCharacters,
   setSelectedCharacters
@@ -65,17 +66,39 @@ function ModeSelectionButtonGroup({
   setSelectedCharacters: (chars: string[]) => void;
 }
 ) {
-  const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;/.,';
+  const firstRow = 'QWERTYUIOP';
+  const secondRow = 'ASDFGHJKL;';
+  const thirdRow = 'ZXCVBNM,./';
 
   return (
-    <div className="d-flex flex-wrap gap-1">
-      {keys.split('').map((key, i) => (
-        <ModeSelectionButton
-          key={i}
-          character={key}
-          selectedCharacters={selectedCharacters}
-          setSelectedCharacters={setSelectedCharacters} />
-      ))}
+    <div className="d-flex gap-1 flex-column">
+      <div className="d-flex gap-1">
+        {firstRow.split('').map((key, i) => (
+          <ModeSelectionButton
+            key={i}
+            character={key}
+            selectedCharacters={selectedCharacters}
+            setSelectedCharacters={setSelectedCharacters} />
+        ))}
+      </div>
+      <div className="d-flex gap-1">
+        {secondRow.split('').map((key, i) => (
+          <ModeSelectionButton
+            key={i}
+            character={key}
+            selectedCharacters={selectedCharacters}
+            setSelectedCharacters={setSelectedCharacters} />
+        ))}
+      </div>
+      <div className="d-flex gap-1">
+        {thirdRow.split('').map((key, i) => (
+          <ModeSelectionButton
+            key={i}
+            character={key}
+            selectedCharacters={selectedCharacters}
+            setSelectedCharacters={setSelectedCharacters} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -127,7 +150,8 @@ function ModeSelect({
   }, [])
 
   function handleSelectAll(setCharacters: (chars: string[]) => void) {
-    setCharacters(Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)));
+    const characters = 'QWERTYUIOPASDFGHJKL;ZXCVBNM,./';
+    setCharacters(characters.split(''));
   }
 
   function shuffleArray<T>(array: T[]): T[] {
@@ -179,32 +203,38 @@ function ModeSelect({
         </div>
         <div className={`${styles['mode-select-section']} mt-3`}>
           <p>二級簡碼</p>
-          <div className={`d-flex align-items-center mb-2 gap-2`}>
-            <button className="btn btn-outline-success" onClick={() => handleSelectAll(setSecondLevelFirstSelectedCharacters)}>
-              全選第一碼
-            </button>
-            <button className="btn btn-outline-success" onClick={() => handleSelectAll(setSecondLevelSecondSelectedCharacters)}>
-              全選第二碼
-            </button>
-            <button className="btn btn-outline-danger" onClick={() => setSecondLevelFirstSelectedCharacters([])}>
-              清空第一碼
-            </button>
-            <button className="btn btn-outline-danger" onClick={() => setSecondLevelSecondSelectedCharacters([])}>
-              清空第二碼
-            </button>
-          </div>
-          <div className="d-flex gap-1 flex-column">
-            <ModeSelectionButtonGroup
-              selectedCharacters={secondLevelFirstSelectedCharacters}
-              setSelectedCharacters={setSecondLevelFirstSelectedCharacters}
-            />
-            <ModeSelectionButtonGroup
-              selectedCharacters={secondLevelSecondSelectedCharacters}
-              setSelectedCharacters={setSecondLevelSecondSelectedCharacters}
-            />
+          <div className={`d-flex mb-2 gap-4`}>
+            <div>
+              <button className="btn btn-outline-success me-2" onClick={() => handleSelectAll(setSecondLevelFirstSelectedCharacters)}>
+                全選第一碼
+              </button>
+              <button className="btn btn-outline-danger" onClick={() => setSecondLevelFirstSelectedCharacters([])}>
+                清空第一碼
+              </button>
+              <div className="mt-2">
+                <ModeSelectionButtonGroup
+                  selectedCharacters={secondLevelFirstSelectedCharacters}
+                  setSelectedCharacters={setSecondLevelFirstSelectedCharacters}
+                />
+              </div>
+            </div>
+            <div>
+              <button className="btn btn-outline-success me-2" onClick={() => handleSelectAll(setSecondLevelSecondSelectedCharacters)}>
+                全選第二碼
+              </button>
+              <button className="btn btn-outline-danger" onClick={() => setSecondLevelSecondSelectedCharacters([])}>
+                清空第二碼
+              </button>
+              <div className="mt-2">
+                <ModeSelectionButtonGroup
+                  selectedCharacters={secondLevelSecondSelectedCharacters}
+                  setSelectedCharacters={setSecondLevelSecondSelectedCharacters}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <button className="btn btn-primary mt-3" onClick={() => {
+        <button className="btn btn-primary mt-2" onClick={() => {
           const article = generateArticle();
           setArticle(article);
         }}>生成</button>

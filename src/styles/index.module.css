@@ -8,6 +8,10 @@
   color: white;
 }
 
+:global(body.dark-mode) .header {
+  background-color: var(--dark-secondary-color);
+}
+
 .header h1 {
   font-size: 3rem;
 }

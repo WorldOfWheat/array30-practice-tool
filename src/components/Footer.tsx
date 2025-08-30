@@ -1,11 +1,13 @@
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+	const githubUrl = "https://github.com/WorldOfWheat/array30-practice-tool";
+
 	return (
 		<>
 			<footer className={`${styles['footer']}`}>
 			<p>
-				<a href="https://github.com/WorldOfWheat" target="_blank" rel="noopener noreferrer">
+				<a href={githubUrl} target="_blank" rel="noopener noreferrer">
 					<i className="bi bi-github"></i>
 				</a>
 			</p>
