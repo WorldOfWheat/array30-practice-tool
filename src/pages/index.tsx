@@ -13,9 +13,6 @@ export default function Index() {
         <p>介面簡單易用，功能也不多，但足夠讓你練習行列。</p>
         <p>希望能幫助到更多的行列使用者。</p>
         <p>如果你在使用過程中有任何問題或建議，歡迎到我的信箱或 GitHub 提出。</p>
-        <p>
-          聯絡信箱：<a href="mailto:a302854888@proton.me">a302854888@proton.me</a>
-        </p>
       </div>
     </div>
   )
