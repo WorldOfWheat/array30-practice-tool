@@ -20,7 +20,7 @@ export default function About() {
         <br />
         作者：小麥 WorldOfWheat
         <br />
-        聯絡信箱：<a href="mailto:a302854888@proton.me">a302854888@proton.me</a>
+        聯絡信箱：<a href="mailto:me@worldofwheat.cc">me@worldofwheat.cc</a>
       </p>
     </div>
   )
