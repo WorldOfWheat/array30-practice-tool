@@ -19,6 +19,8 @@ function getTab(pathname: string): NavbarProps["tab"] {
             return "wordPractice";
         case "/articlePractice":
             return "articlePractice";
+        case "/shortestPractice":
+            return "shortestPractice";
         case "/about":
             return "about";
         default:

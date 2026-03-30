@@ -1,0 +1,33 @@
+.container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.introduce {
+  padding: 1rem;
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+:global(body.dark-mode) .introduce {
+  background-color: var(--dark-secondary-color);
+}
+
+.mode-select {
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+:global(body.dark-mode) .mode-select {
+  background-color: var(--dark-background-color);
+}
+
+.practice {
+  border-top: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.practice-card-container {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}

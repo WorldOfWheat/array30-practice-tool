@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import { useEffect, useState } from "react";
 
 export interface NavbarProps {
-  tab: 'home' | 'wordPractice' | 'articlePractice' | 'about';
+  tab: 'home' | 'wordPractice' | 'articlePractice' | 'shortestPractice' | 'about';
 }
 
 export default function Navbar({ tab }: NavbarProps) {
@@ -36,6 +36,9 @@ export default function Navbar({ tab }: NavbarProps) {
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${tab === 'articlePractice' ? 'active' : ''}`} href="/articlePractice">文章練習</Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link ${tab === 'shortestPractice' ? 'active' : ''}`} href="/shortestPractice">最簡碼練習</Link>
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${tab === 'about' ? 'active' : ''}`} href="/about">關於</Link>
