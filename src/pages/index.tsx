@@ -4,7 +4,7 @@ export default function Index() {
   return (
     <div>
       <div className={`${styles["header"]}`}>
-        <h1>行列高手 v1.0</h1>
+        <h1>行列高手 v1.1</h1>
       </div>
       <div className={`mt-5 ${styles["content"]}`}>
         <p>
