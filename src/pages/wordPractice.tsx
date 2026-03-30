@@ -1,12 +1,7 @@
-import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import styles from "@/styles/wordPractice.module.css";
 import * as tableParser from "@/utils/tableParser";
 import { PracticeCard } from "@/components/PracticeCard"
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 function Introduce() {
   return (
@@ -266,22 +261,10 @@ export default function Index() {
   const [article, setArticle] = useState<string>('');
 
   return (
-    <>
-      <Head>
-        <title>行列高手</title>
-        <meta name="description" content="一個為了練習行列所開發的工具" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar tab="wordPractice" />
-      <div className={`d-flex gap-3 flex-column ${styles['container']}`}>
-        <Introduce />
-        <ModeSelect
-          setArticle={setArticle}
-        />
-        {article && <Practice article={article} />}
-      </div>
-      <Footer />
-    </>
+    <div className={`d-flex gap-3 flex-column ${styles["container"]}`}>
+      <Introduce />
+      <ModeSelect setArticle={setArticle} />
+      {article && <Practice article={article} />}
+    </div>
   )
 }

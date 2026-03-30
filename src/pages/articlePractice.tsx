@@ -1,11 +1,6 @@
-import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "@/styles/articlePractice.module.css";
 import { useState, useRef, useEffect } from "react";
 import { PracticeCard } from "@/components/PracticeCard";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 
 function Introduce() {
   return (
@@ -151,21 +146,11 @@ export default function ArticlePractice() {
   const [article, setArticle] = useState<string>('');
 
   return (
-    <>
-      <Head>
-        <title>行列高手</title>
-        <meta name="description" content="一個為了練習行列所開發的工具" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar tab="articlePractice" />
-      <div className={`d-flex gap-3 flex-column ${styles['container']}`}>
-        <Introduce />
-        <ImportArticle setArticle={setArticle} />
-        {article && <Practice article={article} />}
-      </div>
-      <Footer />
-    </>
+    <div className={`d-flex gap-3 flex-column ${styles["container"]}`}>
+      <Introduce />
+      <ImportArticle setArticle={setArticle} />
+      {article && <Practice article={article} />}
+    </div>
   );
 
 }
